@@ -1,0 +1,52 @@
+Drawing program
+
+
+Requirement
+
+You are to implement a terminal-based drawing program that can support a range of commands:
+
+
+C x y - Initialise a canvas of width x and height y. Output the canvas bordered on top and bottom with hyphens ('-'), and on left and right with pipe ('|'). See example output below.
+
+L x1 y1 x2 y2 c - Draws a line between two points (x1,y1) and (x2,y2). The line will be drawn with an the given c character.
+
+R x1 y1 x2 y2 c - Draws a rectangle bounded by points (x1,y1) and (x2,y2). The rectangle will be drawn with the given c character.
+
+B x1 y1 c - Bucket fills all points connected to the point (x1,y1) with the given c color. If filling inside a rectangle, the inside of the rectangle will be marked with the new color.
+
+Q - quits the program
+
+Output
+
+Print the canvas to the screen, bordered on all 4 sides with - and | characters. e.g. a 3x3 canvas (created with the command C 3 3): 
+
+    -----
+    |   |
+    |   |
+    |   |
+    -----
+
+Draw a line: L 2 2 3 2 .
+
+-----
+|   |
+| ..|
+|   |
+-----
+
+Example command sequence
+
+C 5 10
+L 0 0 0 5 x
+R 0 0 5 5 y
+R 1 1 6 6 z
+B 3 3 z .
+B 0 1 y ,
+Q
+
+Acceptance criteria
+
+- The program will prompt for input, and render the response to the screen, before prompting for more input, up to the point it is terminated with “Q”.
+- A readme explaining how to run the code
+- Adequate test coverage. We recommend a test-driven approach
+- Where requirements are unclear, make a choice and document if necessary
