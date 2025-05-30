@@ -31,7 +31,7 @@ Lines and rectangles can be drawn in either direction.
 e.g. L 3 1 2 2 x produces the same result as L 2 2 3 2 x
      R 1 1 3 3 . produces the same results as R 3 3 1 1 .
 
-Coordinates cannot be negative.
+Coordinates are 1-based and cannot be negative.
 
 Canvas dimensions cannot be less than 2.
 
