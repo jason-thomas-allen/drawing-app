@@ -1,28 +1,37 @@
 import com.example.DrawingApp;
 import com.example.Canvas;
 import com.example.commands.Command;
+import com.example.commands.CommandFactory;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 public class DrawingAppTests {
 
+    private DrawingApp drawingApp;
+    private CommandFactory commandFactory;
+
+    @BeforeEach
+    public void setUp() {
+        commandFactory = new CommandFactory();
+        drawingApp = new DrawingApp(new Canvas(), commandFactory);
+    }
+
     @Test
     public void testDisplayCanvasExecutesAllCommands() {
-        DrawingApp app = new DrawingApp();
         Command command1 = mock(Command.class);
         Command command2 = mock(Command.class);
 
-        // Simulate pushing commands onto the stack
-        app.addCommand(command1);
-        app.addCommand(command2);
+        commandFactory.addCommand(command1);
+        commandFactory.addCommand(command2);
 
         // Call displayCanvas and verify both commands are executed
-        app.displayCanvas();
+        drawingApp.displayCanvas();
         verify(command1).execute(any(Canvas.class));
         verify(command2).execute(any(Canvas.class));
     }

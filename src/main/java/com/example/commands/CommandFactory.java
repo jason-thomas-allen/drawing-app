@@ -1,10 +1,13 @@
 package com.example.commands;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 import java.util.function.Function;
 
 public class CommandFactory {
     private static final Map<String, Function<String, Command>> commandMap = new HashMap<>();
+    private Stack<Command> commandHistory = new Stack<>();
 
     static {
         commandMap.put("C", InitializeCanvasCommand::new);
@@ -13,7 +16,7 @@ public class CommandFactory {
         commandMap.put("B", FillCommand::new);
     }
 
-    public static Command getCommand(String commandString) {
+    public Command getCommand(String commandString) {
         String trimmed = commandString.trim();
         if (trimmed.isEmpty()) {
             throw new IllegalArgumentException("Command cannot be empty");
@@ -25,5 +28,13 @@ public class CommandFactory {
             throw new IllegalArgumentException("Unknown command: " + commandString);
         }
         return supplier.apply(commandArgs);
+    }
+
+    public void addCommand(Command command) {
+        commandHistory.push(command);
+    }
+
+    public Iterable<Command> getCommandHistory() {
+        return java.util.Collections.unmodifiableList(new ArrayList<>(commandHistory));
     }
 }

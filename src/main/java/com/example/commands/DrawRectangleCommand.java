@@ -1,6 +1,5 @@
 package com.example.commands;
 
-import com.example.Canvas;
 import com.example.Drawable;
 
 public class DrawRectangleCommand implements Command {
